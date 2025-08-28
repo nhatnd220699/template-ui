@@ -1,3 +1,4 @@
+* [API module](api-module.md)
 * [Home](/)
 * [Guide](guide.md)
 * [Thêm trang mới](more-pages.md "Hướng dẫn thêm trang mới vào tập tài liệu")
