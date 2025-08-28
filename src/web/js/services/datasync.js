@@ -4,7 +4,7 @@ class DataSync {
 
     this.http = axiosInstance;
     this._config = {
-      timeout: 600,
+      loadingThreshold: 600,
       responseDataPath: ['data', 'result'],
       errorCheckers: [
         (res) => res.status >= 400,
@@ -36,7 +36,7 @@ class DataSync {
    *
    * @param {import('axios').AxiosInstance} http - Axios instance đã cấu hình sẵn.
    * @param {Object} [_config={}] - Cấu hình tùy chọn cho DataSync.
-   * @param {number} [_config.timeout=600] - Thời gian chờ (ms) trước khi gọi hook loading.
+   * @param {number} [_config.loadingThreshold=600] - Thời gian chờ (ms) trước khi gọi hook loading.
    * @param {string[]} [_config.responseDataPath=['data','result']] - Đường dẫn đến payload thực trong response.
    * @param {Array<function>} [_config.errorCheckers] - Mảng hàm kiểm tra lỗi (nhận `(response, data)`).
    * @param {string} [_config.messageField='message'] - Trường chứa thông báo trong response.
@@ -46,7 +46,7 @@ class DataSync {
   static create(http, config = {}) { return new DataSync(http, config); }
   hasError() { return !!this._messages.error; }
   getData(key) { return this._dataCache.get(key); }
-  getMsgError() { return this._messages.error[this._config.messageField] ?? this._messages.error?.message ?? 'Message error is not exits';}
+  getMsgError() { return this._messages.error[this._config.messageField] ?? this._messages.error?.message ?? null;}
   getMsgSuccess() { return this._messages.success; }
   clearCache(key) { this._dataCache.delete(key); this._paramCache.delete(key); return this; }
   clearAllCache() { this._dataCache.clear(); this._paramCache.clear(); return this; }
@@ -56,7 +56,7 @@ class DataSync {
     this._loadingHooks = { onQueueAdd, onQueueEmpty }; return this;
   }
   setResponseOperator({ dataPicker, errorHandler }) {
-    if (dataPicker) this._dataPicker = picker;
+    if (dataPicker) this._dataPicker = dataPicker;
     if (errorHandler) this._errorHandler = errorHandler;
     return this;
   }
@@ -84,23 +84,39 @@ class DataSync {
       return this._dataCache.get(endpoint);
     if (useCache && params) this._paramCache.set(endpoint, params);
 
-    this._pendingRequests++; this._loadingHooks.onQueueAdd && this._loadingHooks.onQueueAdd();
+    const loadingId = setTimeout(() => {
+      this._pendingRequests++; 
+      this._loadingHooks.onQueueAdd && this._loadingHooks.onQueueAdd();
+    }, this._config.loadingThreshold);
+
+
     try {
       const response = await requestFn();
+      clearTimeout(loadingId);
+
       this.interceptors.after && this.interceptors.after(response.data);
+
       this._errorHandler(response, response.data);
+      
       const data = this._dataPicker(response.data);
       this._dataCache.set(endpoint, data);
-      if (response.data[this._config.messageField])
+
+      if (response.data[this._config.messageField]) {
         this._messages.success = response.data[this._config.messageField];
+      }
+
       return data;
     } catch (error) {
       this._messages.error = error.response?.data || error;
-      console.error('❌ DataSync:', error);
+      console.error('DataSync:', error);
+
       return null;
     } finally {
-      if (--this._pendingRequests === 0)
-        this._loadingHooks.onQueueEmpty && this._loadingHooks.onQueueEmpty();
+      if (this._pendingRequests > 0) this._pendingRequests--;
+
+      if (this._pendingRequests === 0) {
+          this._loadingHooks.onQueueEmpty && this._loadingHooks.onQueueEmpty();
+      }
     }
   }
 

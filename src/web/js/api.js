@@ -3,6 +3,8 @@ import DataSync from "./services/datasync";
 
 const api = new DataSync(axios.create({ baseURL: '/template-ui' }));
 
+axios.get()
+
 api.registerGet('getUsers', '/users');
 api.registerPost('createUser', '/users');
 api.registerPatch('updateUser', '/users/:userId');

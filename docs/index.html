@@ -17,11 +17,9 @@
       nativeEmoji: true,
       repo: 'https://github.com/lamlib/docs',
       loadSidebar: true,
-      // hideSidebar: true,
       subMaxLevel: 3,
-      // themeColor: '#3F51B5',
+      themeColor: '#3F51B5',
       logo: '/_media/icon.svg',
-      loadNavbar: true,
       coverpage: ['/', '/en-us/'],
       onlyCover: false,
       auto2top: true,
@@ -30,7 +28,6 @@
       search: {
         placeholder: 'Nhập để tìm kiếm', 
       },
-      disqus: 'ti',
     }
   </script>
   <!-- Docsify v4 -->
@@ -40,27 +37,7 @@
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/disqus.min.js"></script>
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css" />
-
-<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
-
-
 <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-php.min.js"></script>
-<script>
-  const gitalk = new Gitalk({
-    clientID: 'Github Application Client ID',
-    clientSecret: 'Github Application Client Secret',
-    repo: 'Github repo',
-    owner: 'Github repo owner',
-    admin: [
-      'Các cộng tác viên Github repo, chỉ những người này mới có thể khởi tạo github issues',
-    ],
-    // chế độ không bị phân tâm giống facebook
-    distractionFreeMode: false,
-  });
-</script>
 </body>
 </html>
