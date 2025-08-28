@@ -11,57 +11,39 @@
 
   <body>
     <!-- NavBar -->
-    <div
-      id="navBar"
-      class="app_header app_header--size app_header--blur fixed-top d-flex align-items-center px-4"
-    >
-      <div class="col-4">
-        <div
-          class="logo rounded-3 d-flex justify-content-start align-items-center"
-        >
-          <button
-            class="ms-3 btn bg-white d-flex justify-content-center align-items-center"
-            id="btnMenu"
-          >
+    <div id="navBar" class="app_header app_header--size app_header--blur fixed-top d-flex align-items-center px-4">
+      <div class="col-2">
+        <div class="logo rounded-3 d-flex justify-content-start align-items-center">
+          <button class="ms-3 btn bg-white d-flex justify-content-center align-items-center" id="btnMenu">
             <svg width="25" height="25" fill="currentColor">
               <use href="../../../icons.svg#iconMenu"></use>
             </svg>
           </button>
         </div>
       </div>
-      <div class="col-8 d-flex justify-content-end align-items-center gap-4">
-        <div class="search">
-          <svg id="iconSearch" width="20" height="20" fill="currentColor">
-            <use href="../../../icons.svg#iconSearch"></use>
-          </svg>
-          <input type="search" class="form-control ps-5" placeholder="search" />
-        </div>
+      <div class="col-10 d-flex justify-content-end align-items-center gap-4">
         <div class="">
           <div class="multi-lang">
-            <div class=""  id="groupMultiLang">
+            <div class="" id="groupMultiLang">
               <svg width="20" height="20" fill="currentColor">
                 <use href="../../../icons.svg#iconGlobal"></use>
               </svg>
               <span>Tiếng Việt</span>
             </div>
             <div class="box-multi d-none card" id="multiBox">
-              <div class="card-body p-0 ">
+              <div class="card-body p-0">
                 <ul class="list-unstyled m-0 list_hover">
                   <li class="mb-2 p-2" onclick="location.href='./navbar.html'">Tiếng Việt</li>
-                  <li class="mb-2 p-2"  onclick="location.href='./navbar.html'">Tiếng Anh</li>
-                  <li class="p-2"  onclick="location.href='./navbar.html'">Tiếng Trung</li>
+                  <li class="mb-2 p-2" onclick="location.href='./navbar.html'">Tiếng Anh</li>
+                  <li class="p-2" onclick="location.href='./navbar.html'">Tiếng Trung</li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
 
-        <div
-          class="d-flex justify-content-center align-items-center gap-2 profile"
-        >
-          <div
-            class="avatar d-flex justify-content-center align-items-center rounded-5"
-          >
+        <div class="d-flex justify-content-center align-items-center gap-2 profile">
+          <div class="avatar d-flex justify-content-center align-items-center rounded-5">
             <img src="../../../images/imageUser.png" alt="" />
           </div>
           <div class="d-flex flex-column">
@@ -70,132 +52,159 @@
           </div>
         </div>
         <div class="bg-white rounded-3 setting" id="setting">
-          <button
-            class="btn d-flex justify-content-center align-items-center"
-            id="setting"
-          >
+          <button class="btn d-flex justify-content-center align-items-center" id="setting" type="button" data-bs-toggle="offcanvas" data-bs-target="#mySidebar">
             <svg width="25" height="25" fill="currentColor">
               <use href="../../../icons.svg#iconSetting"></use>
             </svg>
           </button>
         </div>
-        <div class="card border-0 p-0 d-none listSetting" id="listSetting">
-          <div class="card-body p-0">
-            <ul class="list-unstyled m-0 list_hover">
-              <li class="p-2"
-              onclick="location.href='./navbar.html'"
-                class="d-flex justify-content-start align-items-center gap-2"
-              >
-                <svg width="20" height="20" fill="currentColor">
-                  <use href="../../../icons.svg#iconHome"></use>
-                </svg>
-                Logout
-              </li>
-            </ul>
-          </div>
-        </div>
+
+       
+      </div>
+    </div>
+<div class="offcanvas offcanvas-end custom-sidebar  custom-offcanvas" id="mySidebar">
+  <div class="offcanvas-header border-bottom">
+    <h5 class="offcanvas-title fw-bold">Cài đặt</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  
+  <div class="offcanvas-body px-0 d-flex flex-column gap-3 ">
+
+    <!-- Multi Lang -->
+    <div class="d-flex align-items-center justify-content-between setting-item">
+      <div class="d-flex align-items-center gap-2">
+        <svg width="20" height="20" fill="currentColor">
+          <use href="../../../icons.svg#iconMoon"></use>
+        </svg>
+        <span>Đổi ngôn ngữ</span>
+      </div>
+      <div class="form-check form-switch m-0">
+       <select class="form-select form-select-sm w-auto">
+        <option>Tiếng Việt</option>
+        <option>English</option>
+        <option>中文</option>
+      </select>
       </div>
     </div>
 
-    <!-- SideBar -->
-    <aside
-      id="appAside"
-      class="app_aside-left--size fixed-top bg-white min-vh-100 px-2 py-4 gap-3 flex-column overflow-hidden"
-    >
-      <header
-        class="app_aside-link--animation app_aside-logo--size d-flex gap-3 align-items-center ps-2 mb-3"
-      >
-        <a
-          href="#"
-          class=" text-decoration-none d-flex justify-content-center align-items-center gap-3"
-        >
-         <svg width="35" height="35" fill="currentColor">
-            <use href="../../../icons.svg##iconHome"></use>
-          </svg>
-          <p class="text-primary fw-bold mb-0 app_aside-hide fs-4">FII-CNSBG</p>
-        </a>
-      </header>
-      <ul class="flex-grow-1 d-flex flex-column gap-2 ps-0">
-        <li
-          data-path-menu="/"
-          type="button"
-          class="app_aside-link--size app_aside-link--animation app_aside-link--hover active rounded d-flex align-items-center gap-3 ps-2"
-        >
-          <svg width="25" height="25" fill="currentColor">
-            <use href="../../../icons.svg#iconHome"></use>
-          </svg>
-          <span class="text-nowrap app_aside-hide">Trang chủ</span>
-        </li>
-        <li
-          data-path-menu="/"
-          type="button"
-          class="app_aside-link--size app_aside-link--animation app_aside-link--hover  rounded d-flex align-items-center gap-3 ps-2"
-        >
-          <svg width="25" height="25" fill="currentColor">
-            <use href="../../../icons.svg#iconHome"></use>
-          </svg>
-          <span class="text-nowrap app_aside-hide">Trang chủ</span>
-        </li>
-         <li class=" ">
-    <button 
-      class="w-100 text-start btn btn-toggle d-flex align-items-center gap-2 ps-2 app_aside-link--animation"
-      data-bs-toggle="collapse" 
-      data-bs-target="#menuLevel1" 
-      aria-expanded="false"
-    >
-      <svg width="25" height="25" fill="currentColor">
-        <use href="../../../icons.svg#iconHome"></use>
-      </svg>
-      <span class="text-nowrap app_aside-hide">Trang chủ</span>
-    </button>
-    <div class="collapse" id="menuLevel1">
-      <ul class="list-unstyled ps-0">
+    <!-- Dark / Light Mode -->
+    <div class="d-flex align-items-center justify-content-between setting-item">
+      <div class="d-flex align-items-center gap-2">
+        <svg width="20" height="20" fill="currentColor">
+          <use href="../../../icons.svg#iconMoon"></use>
+        </svg>
+        <span>Chế độ tối</span>
+      </div>
+      <div class="form-check form-switch m-0">
+        <input class="form-check-input" type="checkbox" id="darkModeSwitch">
+      </div>
+    </div>
 
-        <!-- Cấp 2 -->
-        <li class=" ">
-          <button 
-            class="w-100 text-start btn btn-toggle d-flex align-items-center gap-2 ps-2 app_aside-link--animation"
-            data-bs-toggle="collapse" 
-            data-bs-target="#menuLevel2" 
-            aria-expanded="false"
-          >
+    <!-- Logout -->
+    <div class="d-flex align-items-center justify-content-between setting-item text-danger">
+      <div class="d-flex align-items-center gap-2">
+        <svg width="20" height="20" fill="currentColor">
+          <use href="../../../icons.svg#iconLogout"></use>
+        </svg>
+        <span>Đăng xuất</span>
+      </div>
+      <button class="btn btn-sm btn-outline-primary">Thoát</button>
+    </div>
+
+  </div>
+</div>
+    <!-- SideBar -->
+    <aside id="appAside" class="app_aside-left--size fixed-top bg-white min-vh-100 px-2 py-3 gap-3 flex-column overflow-hidden">
+      <header class="app_aside-link--animation  app_aside-logo--size d-flex gap-3 align-items-center mb-3">
+        <button class="app_aside-link--size w-100 text-start btn btn-toggle d-flex justify-content-between align-items-center gap-2 border-0 app_aside-link--animation">
+          <div class="d-flex align-items-center gap-3">
             <svg width="25" height="25" fill="currentColor">
               <use href="../../../icons.svg#iconHome"></use>
             </svg>
-            <span class="app_aside-hide">Danh mục</span>
+
+            <span class="text-nowrap app_aside-hide fw-bold text-primary fs-5">FII-CNSBG</span>
+          </div>
+        </button>
+      </header>
+
+      <ul class="flex-grow-1 list-unstyled d-flex flex-column gap-2 ps-0">
+        <li onclick="location.href='#' ">
+          <button class="w-100 text-start btn btn-toggle d-flex justify-content-between align-items-center gap-2 border-0 app_aside-link--animation app_aside-link--size active">
+            <div class="d-flex align-items-center gap-3">
+              <svg width="25" height="25" fill="currentColor">
+                <use href="../../../icons.svg#iconHome"></use>
+              </svg>
+              <span class="text-nowrap app_aside-hide">Trang chủ</span>
+            </div>
           </button>
-          <div class="collapse" id="menuLevel2">
-            <ul class="list-unstyled ps-0">
+        </li>
 
-              <!-- Cấp 3 -->
-              <li class="d-flex align-items-center gap-2  app_aside-link--animation">
-                <svg width="25" height="25" fill="currentColor">
-                  <use href="../../../icons.svg#iconHome"></use>
-                </svg>
-                <a href="#" class="text-decoration-none app_aside-hide" >Mục con 1</a>
+        <li class="" onclick="location.href='javascript:void(0)'">
+          <button class="w-100 text-start btn btn-toggle d-flex justify-content-between align-items-center gap-2 border-0 app_aside-link--animation app_aside-link--size">
+            <div class="d-flex align-items-center gap-3">
+              <svg width="25" height="25" fill="currentColor">
+                <use href="../../../icons.svg#iconHome"></use>
+              </svg>
+              <span class="text-nowrap app_aside-hide">Trang chủ</span>
+            </div>
+          </button>
+        </li>
+
+        <!-- menu đa cấp -->
+        <li class=" ">
+          <button class="app_aside-link--size w-100 text-start btn btn-toggle d-flex justify-content-between align-items-center gap-2 border-0 app_aside-link--animation mb-2" data-bs-toggle="collapse" data-bs-target="#menuLevel1" aria-expanded="false">
+            <div class="d-flex align-items-center gap-3">
+              <svg width="25" height="25" fill="currentColor">
+                <use href="../../../icons.svg#iconHome"></use>
+              </svg>
+              <span class="text-nowrap app_aside-hide">Trang chủ</span>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+            </svg>
+          </button>
+          <div class="collapse" id="menuLevel1">
+            <ul class="w-100 list-unstyled app_aside-hide ps-2">
+              <!-- Cấp 2 -->
+              <li class="">
+                <button class="app_aside-link--size w-100 text-start btn btn-toggle d-flex align-items-center justify-content-between gap-2 border-0 app_aside-link--animation mb-2" data-bs-toggle="collapse" data-bs-target="#menuLevel2" aria-expanded="false">
+                  <div class="d-flex justify-content-start align-items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                    </svg>
+                    <span class="">Danh mục</span>
+                  </div>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+                  </svg>
+                </button>
+                <div class="collapse" id="menuLevel2">
+                  <ul class="list-unstyled ps-2">
+                    <!-- Cấp 3 -->
+                    <li class="d-flex justify-content-start align-items-center gap-2 app_aside-link--animation text-start btn border-0 app_aside-link--size mb-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                      </svg>
+                      Mục con 1
+                    </li>
+                    <li href="/123" class="d-flex justify-content-start align-items-center gap-2 app_aside-link--animation text-start btn border-0 mb-2 app_aside-link--size">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                      </svg>
+                      Mục con 2
+                    </li>
+                  </ul>
+                </div>
               </li>
-
-              <li class="d-flex align-items-center gap-2  app_aside-link--animation">
-                <svg width="25" height="25" fill="currentColor">
-                  <use href="../../../icons.svg#iconHome"></use>
+              <li class="d-flex justify-content-start align-items-center gap-2 app_aside-link--animation text-start btn border-0 mb-2 app_aside-link--size">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
                 </svg>
-                <a href="#" class="text-decoration-none app_aside-hide">Mục con 2</a>
+                <span>Cài đặt</span>
               </li>
-
             </ul>
           </div>
         </li>
-
-        <li class="d-flex align-items-center gap-2  app_aside-link--animation">
-          <svg width="25" height="25" fill="currentColor">
-            <use href="../../../icons.svg#iconHome"></use>
-          </svg>
-          <a href="#" class="text-decoration-none app_aside-hide">Cài đặt</a>
-        </li>
-
-      </ul>
-    </div>
-  </li>
       </ul>
     </aside>
   </body>
@@ -209,11 +218,13 @@
     hiddenText: ".app_aside-hide",
     listSetting: "#listSetting",
     multiBox: "#multiBox",
-    groupMultiLang:"#groupMultiLang",
-    setting:"#setting",
-    iconLink:".app_aside-link--animation"
+    groupMultiLang: "#groupMultiLang",
+    setting: "#setting",
+    iconLink: ".app_aside-link--animation",
+    link: ".app_aside-link--size",
+    darkModeSwitch:"#darkModeSwitch"
   });
   nav.init();
-  console.log(nav.ui.iconLink);;
-  nav.setMode("overlay");
+  console.log(nav.ui.darkModeSwitch);;
+  nav.setMode("collapse");
 </script>
