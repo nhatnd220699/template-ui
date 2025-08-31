@@ -3,9 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../../bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../assets/plugins/bootstrap/bootstrap.min.css" />
+    <script src="../../assets/plugins/bootstrap/bootstrap.min.js"></script>
+    <script>
+      (() => {
+        try {
+          const isOpen = JSON.parse(localStorage.getItem("isOpen"));
+          const storedTheme = JSON.parse(localStorage.getItem("dark-mode"));
+          if (storedTheme === "dark") {
+            document.documentElement.setAttribute("data-bs-theme", "dark");
+          } else {
+            document.documentElement.setAttribute("data-bs-theme", "light");
+          }
+        } catch (e) {
+          document.documentElement.setAttribute("data-bs-theme", "light");
+        }
+      })();
+    
+    </script>
     <link rel="stylesheet" href="../css/style.css" />
-    <script src="../../../bootstrap/bootstrap.min.js"></script>
     <title>Document</title>
   </head>
 
@@ -14,23 +30,23 @@
     <div id="navBar" class="app_header app_header--size app_header--blur fixed-top d-flex align-items-center px-4">
       <div class="col-2">
         <div class="logo rounded-3 d-flex justify-content-start align-items-center">
-          <button class="ms-3 btn bg-white d-flex justify-content-center align-items-center" id="btnMenu">
+          <button class="ms-3 btn btn-light shadow-sm d-flex justify-content-center align-items-center" id="btnMenu">
             <svg width="25" height="25" fill="currentColor">
-              <use href="../../../icons.svg#iconMenu"></use>
+              <use href="../../assets/images/icons.svg#iconMenu"></use>
             </svg>
           </button>
         </div>
       </div>
       <div class="col-10 d-flex justify-content-end align-items-center gap-4">
         <div class="">
-          <div class="multi-lang">
-            <div class="" id="groupMultiLang">
+          <div class="multi-lang position-relative">
+            <div class="btn" id="groupMultiLang">
               <svg width="20" height="20" fill="currentColor">
-                <use href="../../../icons.svg#iconGlobal"></use>
+                <use href="../../assets/images/icons.svg#iconGlobal"></use>
               </svg>
               <span>Tiếng Việt</span>
             </div>
-            <div class="box-multi d-none card" id="multiBox">
+            <div class="box-multi d-none card position-absolute mt-2" id="multiBox">
               <div class="card-body p-0">
                 <ul class="list-unstyled m-0 list_hover">
                   <li class="mb-2 p-2" onclick="location.href='./navbar.html'">Tiếng Việt</li>
@@ -44,7 +60,7 @@
 
         <div class="d-flex justify-content-center align-items-center gap-2 profile">
           <div class="avatar d-flex justify-content-center align-items-center rounded-5">
-            <img src="../../../images/imageUser.png" alt="" />
+            <img src="../../assets/images/imageUser.png" alt="" />
           </div>
           <div class="d-flex flex-column">
             <span class="fw-bold">Trần Quang Huy</span>
@@ -52,74 +68,60 @@
           </div>
         </div>
         <div class="bg-white rounded-3 setting" id="setting">
-          <button class="btn d-flex justify-content-center align-items-center" id="setting" type="button" data-bs-toggle="offcanvas" data-bs-target="#mySidebar">
+          <button class="btn btn-light shadow-sm d-flex justify-content-center align-items-center" id="setting" type="button" data-bs-toggle="offcanvas" data-bs-target="#mySidebar">
             <svg width="25" height="25" fill="currentColor">
-              <use href="../../../icons.svg#iconSetting"></use>
+              <use href="../../assets/images/icons.svg#iconSetting"></use>
             </svg>
           </button>
         </div>
-
-       
       </div>
     </div>
-<div class="offcanvas offcanvas-end custom-sidebar  custom-offcanvas" id="mySidebar">
-  <div class="offcanvas-header border-bottom">
-    <h5 class="offcanvas-title fw-bold">Cài đặt</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-  </div>
-  
-  <div class="offcanvas-body px-0 d-flex flex-column gap-3 ">
-
-    <!-- Multi Lang -->
-    <div class="d-flex align-items-center justify-content-between setting-item">
-      <div class="d-flex align-items-center gap-2">
-        <svg width="20" height="20" fill="currentColor">
-          <use href="../../../icons.svg#iconMoon"></use>
-        </svg>
-        <span>Đổi ngôn ngữ</span>
+    <div class="offcanvas offcanvas-end custom-sidebar custom-offcanvas" id="mySidebar">
+      <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title fw-bold">Cài đặt</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
       </div>
-      <div class="form-check form-switch m-0">
-       <select class="form-select form-select-sm w-auto">
-        <option>Tiếng Việt</option>
-        <option>English</option>
-        <option>中文</option>
-      </select>
+
+      <div class="offcanvas-body px-2 d-flex flex-column gap-3">
+        <!-- Multi Lang -->
+        <div class="d-flex align-items-center justify-content-between setting-item">
+          <div class="d-flex align-items-center gap-2">
+            <span>Đổi ngôn ngữ</span>
+          </div>
+          <div class="form-check form-switch m-0">
+            <select class="form-select-sm w-auto">
+              <option>Tiếng Việt</option>
+              <option>English</option>
+              <option>中文</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Dark / Light Mode -->
+        <div class="d-flex align-items-center justify-content-between setting-item">
+          <div class="d-flex align-items-center gap-2">
+            <span>Chế độ tối</span>
+          </div>
+          <div class="form-check form-switch m-0">
+            <input class="form-check-input" type="checkbox" id="darkModeSwitch" />
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-between setting-item text-danger">
+          <div class="d-flex align-items-center gap-2">
+            <span>Đăng xuất</span>
+          </div>
+          <button class="btn btn-sm">Thoát</button>
+        </div>
       </div>
     </div>
-
-    <!-- Dark / Light Mode -->
-    <div class="d-flex align-items-center justify-content-between setting-item">
-      <div class="d-flex align-items-center gap-2">
-        <svg width="20" height="20" fill="currentColor">
-          <use href="../../../icons.svg#iconMoon"></use>
-        </svg>
-        <span>Chế độ tối</span>
-      </div>
-      <div class="form-check form-switch m-0">
-        <input class="form-check-input" type="checkbox" id="darkModeSwitch">
-      </div>
-    </div>
-
-    <!-- Logout -->
-    <div class="d-flex align-items-center justify-content-between setting-item text-danger">
-      <div class="d-flex align-items-center gap-2">
-        <svg width="20" height="20" fill="currentColor">
-          <use href="../../../icons.svg#iconLogout"></use>
-        </svg>
-        <span>Đăng xuất</span>
-      </div>
-      <button class="btn btn-sm btn-outline-primary">Thoát</button>
-    </div>
-
-  </div>
-</div>
     <!-- SideBar -->
     <aside id="appAside" class="app_aside-left--size fixed-top bg-white min-vh-100 px-2 py-3 gap-3 flex-column overflow-hidden">
-      <header class="app_aside-link--animation  app_aside-logo--size d-flex gap-3 align-items-center mb-3">
+      <header class="app_aside-link--animation app_aside-logo--size d-flex gap-3 align-items-center mb-3">
         <button class="app_aside-link--size w-100 text-start btn btn-toggle d-flex justify-content-between align-items-center gap-2 border-0 app_aside-link--animation">
           <div class="d-flex align-items-center gap-3">
             <svg width="25" height="25" fill="currentColor">
-              <use href="../../../icons.svg#iconHome"></use>
+              <use href="../../assets/images/icons.svg#iconHome"></use>
             </svg>
             <span class="text-nowrap app_aside-hide fw-bold text-primary fs-5">FII-CNSBG</span>
           </div>
@@ -128,10 +130,10 @@
 
       <ul class="flex-grow-1 list-unstyled d-flex flex-column gap-2 ps-0">
         <li onclick="location.href='#' ">
-          <button class="w-100 text-start btn btn-toggle d-flex justify-content-between align-items-center gap-2 border-0 app_aside-link--animation app_aside-link--size active">
+          <button class="w-100 text-start btn btn-toggle d-flex justify-content-between align-items-center gap-2 border-0 app_aside-link--animation app_aside-link--size">
             <div class="d-flex align-items-center gap-3">
               <svg width="25" height="25" fill="currentColor">
-                <use href="../../../icons.svg#iconHome"></use>
+                <use href="../../assets/images/icons.svg#iconHome"></use>
               </svg>
               <span class="text-nowrap app_aside-hide">Trang chủ</span>
             </div>
@@ -142,7 +144,7 @@
           <button class="w-100 text-start btn btn-toggle d-flex justify-content-between align-items-center gap-2 border-0 app_aside-link--animation app_aside-link--size">
             <div class="d-flex align-items-center gap-3">
               <svg width="25" height="25" fill="currentColor">
-                <use href="../../../icons.svg#iconHome"></use>
+                <use href="../../assets/images/icons.svg#iconHome"></use>
               </svg>
               <span class="text-nowrap app_aside-hide">Trang chủ</span>
             </div>
@@ -154,7 +156,7 @@
           <button class="app_aside-link--size w-100 text-start btn btn-toggle d-flex justify-content-between align-items-center gap-2 border-0 app_aside-link--animation mb-2" data-bs-toggle="collapse" data-bs-target="#menuLevel1" aria-expanded="false">
             <div class="d-flex align-items-center gap-3">
               <svg width="25" height="25" fill="currentColor">
-                <use href="../../../icons.svg#iconHome"></use>
+                <use href="../../assets/images/icons.svg#iconHome"></use>
               </svg>
               <span class="text-nowrap app_aside-hide">Trang chủ</span>
             </div>
@@ -181,35 +183,54 @@
                   <ul class="list-unstyled ps-2">
                     <!-- Cấp 3 -->
                     <li class="d-flex justify-content-start align-items-center gap-2 app_aside-link--animation text-start btn border-0 app_aside-link--size mb-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                      </svg>
-                      Mục con 1
+                      <div class="d-flex justify-content-start align-items-center gap-2 app_aside-hide">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                        </svg>
+                        <span>Mục con 1</span>
+                      </div>
                     </li>
                     <li href="/123" class="d-flex justify-content-start align-items-center gap-2 app_aside-link--animation text-start btn border-0 mb-2 app_aside-link--size">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                      </svg>
-                      Mục con 2
+                      <div class="d-flex justify-content-start align-items-center gap-2 app_aside-hide">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                        </svg>
+                        <span>Mục con 2</span>
+                      </div>
                     </li>
                   </ul>
                 </div>
               </li>
               <li class="d-flex justify-content-start align-items-center gap-2 app_aside-link--animation text-start btn border-0 mb-2 app_aside-link--size">
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                </svg>
-                <span>Cài đặt</span>
+                <div class="d-flex justify-content-start align-items-center gap-2 app_aside-hide">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                  </svg>
+                  <span>Mục con 1</span>
+                </div>
               </li>
             </ul>
           </div>
         </li>
+        <li onclick="location.href='#' ">
+          <button class="w-100 text-start btn btn-toggle d-flex justify-content-between align-items-center gap-2 border-0 app_aside-link--animation app_aside-link--size">
+            <div class="d-flex align-items-center gap-3">
+              <svg width="25" height="25" fill="currentColor">
+                <use href="../../assets/images/icons.svg#iconHome"></use>
+              </svg>
+              <span class="text-nowrap app_aside-hide">Trang chủ</span>
+            </div>
+          </button>
+        </li>
       </ul>
     </aside>
+
+    <!-- main -->
+    <main class="card"></main>
   </body>
 </html>
 <script type="module">
-  import createNav from "../js/services/navbar.js";
+  import createNav from "../js/services/layout.js";
   const nav = createNav({
     menu: "#btnMenu",
     navBar: "#navBar",
@@ -221,9 +242,10 @@
     setting: "#setting",
     iconLink: ".app_aside-link--animation",
     link: ".app_aside-link--size",
-    darkModeSwitch:"#darkModeSwitch"
+    darkModeSwitch: "#darkModeSwitch",
   });
-  nav.init();
-  console.log(nav.ui.darkModeSwitch);;
-  nav.setMode("collapse");
+  document.addEventListener("DOMContentLoaded", () => {
+    nav.init();
+    nav.setMode("collapse");
+  });
 </script>
